@@ -95,9 +95,9 @@ For COCO, Modify them in `configs/coco_attn_reg.yaml`.
 To start training, just run the following code.
 ```bash
 # train on voc
-python scripts/dist_clip_voc.py --config your/path/WTCLIP/configs/voc_attn_reg.yaml
+python scripts/train_clip_voc.py --config your/path/WTCLIP/configs/voc_attn_reg.yaml
 # train on coco
-python scripts/dist_clip_coco.py --config your/path/WTCLIP/configs/coco_attn_reg.yaml
+python scripts/train_clip_coco.py --config your/path/WTCLIP/configs/coco_attn_reg.yaml
 ```
 
 ### Inference
