@@ -6,7 +6,7 @@
 
 
 <div align="center">
-<img src="figure/framework.png" style="width: 100%;height: 100%">
+<img src="figure/framework.pdf" style="width: 100%;height: 100%">
 </div>
 
 <p align="center"><b><font size="70"></font></b></p>
