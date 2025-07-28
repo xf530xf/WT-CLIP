@@ -117,4 +117,10 @@ python test_msc_flip_coco.py --model_path your/inference/model/path/WTCLIP_model
 
 <p align="center"><b><font size="70"></font></b></p>
 
+
+<div align="center">
+<img src="figure/111.png" style="width: 80%;height: 80%">
+</div>
+
+<p align="center"><b><font size="70"></font></b></p>
  
