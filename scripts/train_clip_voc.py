@@ -25,11 +25,11 @@ from WTCLIP.model_attn_aff_voc import WTCLIP
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config",
-                    default='/data2/XF/KeYan/WeCLIP/configs/voc_attn_reg.yaml',
+                    default='/data2/XF/KeYan/WTCLIP/configs/voc_attn_reg.yaml',
                     type=str,
                     help="config")
 parser.add_argument("--seg_detach", action="store_true", help="detach seg")
-parser.add_argument("--work_dir", default='/data2/XF/KeYan/WeCLIP/work_dir_voc', type=str, help="work_dir")
+parser.add_argument("--work_dir", default='/data2/XF/KeYan/WTCLIP/work_dir_voc', type=str, help="work_dir")
 parser.add_argument("--radius", default=8, type=int, help="radius")
 parser.add_argument("--crop_size", default=520, type=int, help="crop_size")
 
