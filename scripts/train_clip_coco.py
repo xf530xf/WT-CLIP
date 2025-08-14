@@ -25,7 +25,7 @@ from WTCLIP.model_attn_aff_coco import WTCLIP
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config",
-                    default='/data2/XF/KeYan/WeCLIP/configs/coco_attn_reg.yaml',
+                    default='/data2/XF/KeYan/WTCLIP/configs/coco_attn_reg.yaml',
                     type=str,
                     help="config")
 parser.add_argument("--seg_detach", action="store_true", help="detach seg")
@@ -282,7 +282,7 @@ def train(cfg):
 
         
         if (n_iter + 1) % cfg.train.eval_iters == 0:
-            ckpt_name = os.path.join(cfg.work_dir.ckpt_dir, "WeCLIP_model_iter_%d.pth"%(n_iter+1))
+            ckpt_name = os.path.join(cfg.work_dir.ckpt_dir, "WTCLIP_model_iter_%d.pth"%(n_iter+1))
             logging.info('Validating...')
             if (n_iter + 1) > 40000:
                 torch.save(WTCLIP_model.state_dict(), ckpt_name)
