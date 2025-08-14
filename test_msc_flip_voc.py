@@ -15,20 +15,20 @@ from tqdm import tqdm
 import joblib
 from datasets import voc
 from utils import evaluate
-from WeCLIP_model.model_attn_aff_voc import WeCLIP
+from WTCLIP_model.model_attn_aff_voc import WTCLIP
 import imageio.v2 as imageio
 parser = argparse.ArgumentParser()
 parser.add_argument("--config",
                     default='configs/voc_attn_reg.yaml',
                     type=str,
                     help="config")
-parser.add_argument("--work_dir", default="/data2/XF/KeYan/WeCLIP/results-voc-coco", type=str, help="work_dir")
+parser.add_argument("--work_dir", default="/data2/XF/KeYan/WTCLIP/results-voc-coco", type=str, help="work_dir")
 parser.add_argument("--bkg_score", default=0.55, type=float, help="bkg_score")
 parser.add_argument("--resize_long", default=512, type=int, help="resize the long side")
 parser.add_argument("--eval_set", default="val", type=str, help="eval_set") #val
-parser.add_argument("--model_path", default="/data2/XF/KeYan/WeCLIP/work_dir_voc/checkpoints/2024-12-26-10-11/WeCLIP_model_iter_28000.pth", type=str, help="model_path")
-# parser.add_argument("--model_path", default="/data2/XF/KeYan/WeCLIP/work_dir_voc/checkpoints/2025-02-08-15-30/WeCLIP_model_iter_10000.pth", type=str, help="model_path")
-# parser.add_argument("--model_path", default="/data2/XF/KeYan/WeCLIP/work_dir_voc/checkpoints/2025-02-11-19-48/WeCLIP_model_iter_1.pth", type=str, help="model_path")
+parser.add_argument("--model_path", default="/data2/XF/KeYan/WTCLIP/work_dir_voc/checkpoints/2024-12-26-10-11/WTCLIP_model_iter_28000.pth", type=str, help="model_path")
+# parser.add_argument("--model_path", default="/data2/XF/KeYan/WTCLIP/work_dir_voc/checkpoints/2025-02-08-15-30/WTCLIP_model_iter_10000.pth", type=str, help="model_path")
+# parser.add_argument("--model_path", default="/data2/XF/KeYan/WTCLIP/work_dir_voc/checkpoints/2025-02-11-19-48/WTCLIP_model_iter_1.pth", type=str, help="model_path")
 
 
 def validate(model, dataset, test_scales=None):
@@ -204,7 +204,7 @@ def main(cfg):
         num_classes=cfg.dataset.num_classes,
     )
 
-    WeCLIP_model = WeCLIP(num_classes=cfg.dataset.num_classes,
+    WTCLIP_model = WTCLIP(num_classes=cfg.dataset.num_classes,
                      clip_model=cfg.clip_init.clip_pretrain_path,
                      embedding_dim=cfg.clip_init.embedding_dim,
                      in_channels=cfg.clip_init.in_channels,
@@ -213,10 +213,10 @@ def main(cfg):
     
     trained_state_dict = torch.load(args.model_path, map_location="cpu")
 
-    WeCLIP_model.load_state_dict(state_dict=trained_state_dict, strict=False)
-    WeCLIP_model.eval()
+    WTCLIP_model.load_state_dict(state_dict=trained_state_dict, strict=False)
+    WTCLIP_model.eval()
 
-    gts, preds, msc_preds, cams, preds_hist, msc_preds_hist, cams_hist = validate(model=WeCLIP_model, dataset=val_dataset, test_scales=[1, 0.75])
+    gts, preds, msc_preds, cams, preds_hist, msc_preds_hist, cams_hist = validate(model=WTCLIP_model, dataset=val_dataset, test_scales=[1, 0.75])
     torch.cuda.empty_cache()
 
     preds_hist, seg_score = evaluate.scores(gts, preds, preds_hist)
@@ -250,3 +250,4 @@ if __name__ == "__main__":
     os.makedirs(args.work_dir + "/prediction_cmap", exist_ok=True)
 
     main(cfg=cfg)
+
