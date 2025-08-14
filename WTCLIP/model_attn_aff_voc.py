@@ -170,7 +170,7 @@ class WTCLIP(nn.Module):
 
         ######################################
 
-        # self.WD=AdaptiveFeatureFusion()
+        self.WD=AdaptiveFeatureFusion()
         ###########################################
 
 
